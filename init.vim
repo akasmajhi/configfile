@@ -1,0 +1,1 @@
+/home/amajhi/.config/nvim/init.vim
