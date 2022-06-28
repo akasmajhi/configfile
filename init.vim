@@ -28,26 +28,32 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'SirVer/ultisnips'
+    Plug 'mlaursen/vim-react-snippets' "Added on 21-MAY-2022 for vim-react-snippets
+    Plug 'sbdchd/neoformat' "Added on 21-MAY-2022 for prettier: https://prettier.io/docs/en/vim.html
+
 call plug#end()
-
-
 
 colorscheme PaperColor
 
 " basic settings
-syntax on
+" Added on 18-MAY-2022
+syntax enable
+set nocompatible
+filetype plugin on
+" END -->  Added on 18-MAY-2022
+set syntax=on
 set number
 set relativenumber
 set autoindent
 set autoindent
 set smarttab
 set shiftwidth=4
-set softtabstop=4
-set mouse=a  " mouse support
-set ignorecase      " ignore case
-set smartcase     " but don't ignore it, when search string contains uppercase letters
-set nocompatible
-set incsearch        " do incremental searching
+set softtabstop=2
+set mouse=a  
+set ignorecase      
+set smartcase    
+set incsearch       
 set visualbell
 set expandtab
 set ruler
@@ -58,9 +64,33 @@ set backspace=indent,eol,start " allow backspacing over everything in insert mod
 " Akas Added [13-FEF-2022] for bi-directional clipboard support with windows
 " and WSL
 set clipboard=unnamedplus
+let g:clipboard = {
+          \   'name': 'win32yank-wsl',
+          \   'copy': {
+          \      '+': 'win32yank.exe -i --crlf',
+          \      '*': 'win32yank.exe -i --crlf',
+          \    },
+          \   'paste': {
+          \      '+': 'win32yank.exe -o --lf',
+          \      '*': 'win32yank.exe -o --lf',
+          \   },
+          \   'cache_enabled': 0,
+          \ }
 
 " set leader key to ,
 let g:mapleader=","
+
+" My custom key bindings.
+nnoremap <leader><bs> dd
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <Leader>lv :source $MYVIMRC<cr>
+" JS Abbreviations
+iabbrev C console.log("");<esc>2h<ins>
+inoremap jk <esc>
+" Force disable the ESC so that you press jk always!
+inoremap <esc> <nop>
+nnoremap ZZ :w<cr>
+" END: My custom key bindings.
 
 " >> Telescope bindings
 nnoremap <Leader>pp <cmd>lua require'telescope.builtin'.builtin{}<CR>
