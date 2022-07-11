@@ -4,6 +4,8 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'neovim/nvim-lspconfig'
+    Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' } 
+    " Added on 01-JUL-2022 - https://github.com/glepnir/lspsaga.nvim
     Plug 'williamboman/nvim-lsp-installer', { 'branch': 'main' }
     Plug 'hrsh7th/nvim-compe'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -31,9 +33,18 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'SirVer/ultisnips'
     Plug 'mlaursen/vim-react-snippets' "Added on 21-MAY-2022 for vim-react-snippets
     Plug 'sbdchd/neoformat' "Added on 21-MAY-2022 for prettier: https://prettier.io/docs/en/vim.html
+    " Added on 05-UL-2022 for debugging.
+    " Source: https://youtu.be/0moS8UHupGc
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'rcarriga/nvim-dap-ui'
+    Plug 'theHamsta/nvim-dap-virtual-text'
+    Plug 'nvim-telescope/telescope-dap.nvim'
+
 
 call plug#end()
 
+" LSP Saga config --- start 
+" LSP Saga Config --- end
 colorscheme PaperColor
 
 " basic settings
@@ -78,8 +89,8 @@ let g:clipboard = {
           \ }
 
 " set leader key to ,
+" let g:mapleader="<Space>"
 let g:mapleader=","
-
 " My custom key bindings.
 nnoremap <leader><bs> dd
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
@@ -88,8 +99,23 @@ nnoremap <Leader>lv :source $MYVIMRC<cr>
 iabbrev C console.log("");<esc>2h<ins>
 inoremap jk <esc>
 " Force disable the ESC so that you press jk always!
-inoremap <esc> <nop>
+" inoremap <esc> <nop>
 nnoremap ZZ :w<cr>
+" Added on 11-JUL-2022 for split navigations
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+" <C-k> is already mapped to Lsp func signature; hence, <Leader> preceeds
+" <C-k>
+nnoremap <Leader><C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" Window/Pane Resize shortcuts
+nnoremap <silent> <C-left> :vertical resize -3<CR>
+nnoremap <silent> <C-Right> :vertical resize +3<CR>
+nnoremap <silent> <C-Up> :resize -3<CR>
+nnoremap <silent> <C-Down> :resize +3<CR>
+
+" Remove pipes that act as separators on splits
+set fillchars+=vert:\
 " END: My custom key bindings.
 
 " >> Telescope bindings
@@ -133,7 +159,8 @@ nnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
 " page-forward. Hence, comment.
 " This does not work! May be a conflict. nnoremap <C-n> :NERDTree<CR> 
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
+" Commented on 11-JUL-2022 since it conflicts with my pane nav shortcut
+" nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
 " >> Lsp key bindings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
