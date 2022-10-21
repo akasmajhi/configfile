@@ -8,6 +8,6 @@ require('lsp-config.nvim-cmp')
 require('lualine-config')
 require('barbar-config')
 require('treesitter-config')
-require('shade-config')
+require('shade-config') -- Seems like it does not work with barbar
 require('hydra-config')
 require("clipboard")

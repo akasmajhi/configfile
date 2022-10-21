@@ -2,8 +2,9 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = ','
-
+-- vim.g:coc_global_extensions = {'coc-solidity', 'coc-snippets', 'coc-pyright'}
 map('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
+map('n', '<leader>ef', ':NvimTreeFocus<CR>', opts)
 map('n', '<leader>ps', ':PackerSync<CR>', opts)
 
 -- barbar keybindings
@@ -61,6 +62,6 @@ map('n', '<C-h>', '<C-W>h', opts)
 
 map('n', '<C-S-Left>', ':vertical resize +3<CR>', opts)
 map('n', '<C-S-Right>', ':vertical resize -3<CR>', opts)
--- map('n', '<C-S-Up>', ':resize +3<CR>', opts) -- 2022-08-12 conflicting key! with shade
--- map('n', '<C-S-Down>', ':resize +3<CR>', opts) -- 2022-08-12 conflicting key! with shade
+map('n', '<C-S-+>', ':resize +3<CR>', opts) -- 2022-08-12 conflicting key! with shade
+map('n', '<C-S-->', ':resize +3<CR>', opts) -- 2022-08-12 conflicting key! with shade
 

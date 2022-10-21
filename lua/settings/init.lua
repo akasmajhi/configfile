@@ -34,11 +34,12 @@ set.virtualedit = all
 set.backspace=indent,eol,start -- allow backspacing over everything in insert mode
 set.autoindent = true
 -- Added on 16-Aug-2022 for spell checking
-set.spelllang = en_us 
-set.spell = true
+set.spell = false -- Defaulted to no-spell-check
+vim.cmd [[set spelllang=en_us,fr ]] 
+vim.cmd [[set spellsuggest=best,9 ]]
 -- set.mouse = a  -- mouse support
 vim.cmd [[set mouse=a]]
--- Akas Added [13-FEF-2022] for bi-directional clipboard support with windows
+-- Akas Added [13-FEB-2022] for bi-directional clipboard support with windows
 -- and WSL
 set.clipboard = unnamedplus
 
