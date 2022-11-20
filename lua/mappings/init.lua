@@ -62,6 +62,6 @@ map('n', '<C-h>', '<C-W>h', opts)
 
 map('n', '<C-S-Left>', ':vertical resize +3<CR>', opts)
 map('n', '<C-S-Right>', ':vertical resize -3<CR>', opts)
-map('n', '<C-S-+>', ':resize +3<CR>', opts) -- 2022-08-12 conflicting key! with shade
-map('n', '<C-S-->', ':resize +3<CR>', opts) -- 2022-08-12 conflicting key! with shade
+-- map('n', '<C-S-+>', ':resize +3<CR>', opts) -- 2022-08-12 conflicting key! with shade
+-- map('n', '<C-S-->', ':resize +3<CR>', opts) -- 2022-08-12 conflicting key! with shade
 
